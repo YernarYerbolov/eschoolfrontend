@@ -1,0 +1,73 @@
+<div *ngIf="!condition">
+<form [formGroup]="formLogin">
+   <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Username</label>
+      <input type="text" formControlName="username" class="form-control" id="exampleFormControlInput1" placeholder="Username">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">password</label>
+      <input type="password" formControlName="password" class="form-control" id="exampleFormControlInput1" placeholder="Password ">
+    </div>
+   </form>
+   <div class="modal-footer">
+      <button type="button" (click)="login();" class="btn btn-primary">Enter</button>
+    </div>
+</div>   
+<div *ngIf="condition">
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+       <h1>All students</h1>
+       <div class="d-flex">
+          <button  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add Students</button>
+       </div>
+    </div>
+ </nav>
+ 
+ <table class ="table mt-3">
+    <thead>
+        <tr>
+           <th scope="col">Student ID</th>
+           <th scope="col">Student name</th>
+           <th scope="col">Student group</th>
+        </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let student of students">
+          <td>{{student.id}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.studentGroup}}</td>
+          <td>
+             <button (click)="deleteStudent(student);" class="btn btn-danger ms-3">Delete</button>
+          </td>
+       </tr>
+    </tbody>
+ </table>
+ 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Student title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+          <div class="mb-3">
+             <label for="exampleFormControlInput1" class="form-label">Name</label>
+             <input type="text" formControlName="name" class="form-control" id="exampleFormControlInput1" placeholder="Tim">
+           </div>
+           <div class="mb-3">
+             <label for="exampleFormControlInput1" class="form-label">Group</label>
+             <input type="text" formControlName="studentGroup" class="form-control" id="exampleFormControlInput1" placeholder="CSSE ">
+           </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="addStudent();" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
